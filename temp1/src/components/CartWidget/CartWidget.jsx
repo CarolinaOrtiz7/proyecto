@@ -1,10 +1,11 @@
-import React from 'react'
-
+import { BsCart4 } from "react-icons/bs";
 
 export const CartWidget = () => {
-    return (
-        <div>
-            <img src="https://www.freepng.es/png-u6b5ot/" alt="" />
+   
+    return(
+
+        <div > Carrito
+        <BsCart4 style= {{fontSize:'35px'}}/> 
         </div>
     )
 }
