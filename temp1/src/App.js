@@ -1,8 +1,9 @@
 import logo from './logo.svg';
-import './App.css';
 import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
+
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {ItemListContainer} from './components/ItemListContainer';
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
   return (
     <div className="App" >
      <NavBar/>
-     <ItemListContainer greetings="Soy una props" />
+     <ItemListContainer/>
+     
     </div>
   );
 }
