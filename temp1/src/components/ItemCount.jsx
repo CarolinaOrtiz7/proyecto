@@ -27,7 +27,6 @@ function ItemCount ({inicial,stock,onAdd}) {
         <Button bg="dark" variant="dark" style= {{fontSize:'8px'}} onClick={handleRestar}>-</Button>
         {contador}
         <Button bg="dark" variant="dark" style= {{fontSize:'8px'}} onClick={handleAumentar}>+</Button><br></br>
-        <Button bg="dark" variant="dark" onClick={agregar} >Agregar al carrito</Button>
         
         </div>
         
