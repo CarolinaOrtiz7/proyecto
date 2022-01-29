@@ -12,12 +12,12 @@ return <div>
       <div className="col">
           <div className="container">
               <h3>{product.nombre}</h3> 
-              <img src={product.foto} alt='' className='fotodetalle'/> <br></br>
-              <h8 className="descripcion">{product.descripcion}</h8>
+              <img src={product.foto} alt='' className='fotodetalle'/><br></br>
+              <h8 className="descripcion">{product.descripcion}</h8><br></br> 
           </div>
       </div>
       <div className="contador">
-          <ItemCount onAdd={onAdd} initial={1} stock={10} /> 
+          <ItemCount onAdd={onAdd} initial={1} stock={6}/> 
           
       </div>
       </div>

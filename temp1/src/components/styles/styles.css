@@ -63,9 +63,15 @@
 }
 
 .descripcion {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  left: 360px;
+  width: 200px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1em;
-  -webkit-box-shadow: 0.5px 0.5px 10px #992a2a;
-          box-shadow: 0.5px 0.5px 10px #992a2a;
+  -webkit-box-shadow: 0.5px 0.5px 10px #a80707;
+          box-shadow: 0.5px 0.5px 10px #a80707;
 }
 /*# sourceMappingURL=styles.css.map */
