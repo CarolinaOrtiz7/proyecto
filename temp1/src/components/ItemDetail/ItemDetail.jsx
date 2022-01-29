@@ -1,18 +1,28 @@
-import React from 'react';
+import ItemCount from "../ItemListContainer/ItemCount";
 
 
-const ItemDetail = (props) => {
-  const { nombre, categoria,descripcion,precio,foto} =
-   props.productos;
-  return (
-    <>
-      <h1>{nombre}</h1>
-      <h4>Categoria:{categoria}</h4>
-      <h4>Descripcion: {descripcion}</h4>
-      <h4>Precio: {precio}</h4>
-       <h4>{foto}</h4>
-    </>
-  );
+const ItemDetail = ({product}) => {
+
+  function onAdd(cant) {
+      console.log(cant)
+  }
+
+return <div>
+      <div className="row">
+      <div className="col">
+          <div className="container">
+              <h3>{product.nombre}</h3> 
+              <img src={product.foto} alt='' className='fotodetalle'/> <br></br>
+              <h8 className="descripcion">{product.descripcion}</h8>
+          </div>
+      </div>
+      <div className="contador">
+          <ItemCount onAdd={onAdd} initial={1} stock={10} /> 
+          
+      </div>
+      </div>
+
+</div>;
 };
 
 export default ItemDetail;

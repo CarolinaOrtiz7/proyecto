@@ -1,6 +1,6 @@
 import  ItemCount  from './ItemCount';
 import React, { useEffect, useState } from 'react';
-import {getProductos} from '../helpers/mock';
+import {getFetch} from '../helpers/mock';
 import Button from 'react-bootstrap/esm/Button';
 import { Link, useParams } from 'react-router-dom';
 
@@ -17,14 +17,14 @@ function ItemListContainer () {
 
         if (idCategoria) {
 
-            getProductos
+            getFetch
         .then(res => setProductos(res.filter(prod=>prod.categoria===idCategoria)))
         .catch(err=>console.log(err))
        
         } else {
             
         
-    getProductos
+    getFetch
     .then(res => setProductos(res))
     .catch(err=>console.log(err))
      

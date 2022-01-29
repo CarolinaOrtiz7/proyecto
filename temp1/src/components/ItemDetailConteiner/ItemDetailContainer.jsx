@@ -1,28 +1,29 @@
-import React,  { useEffect, useState } from 'react';
-import {getProductos} from '../helpers/mock';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getFetch } from '../helpers/mock';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 const ItemDetailContainer = () => {
+  const [product, setProduct] = useState({});
+  const { idProducto } = useParams()
 
-  const [producto,setProductos] = useState({});
-  const idproducto = 1;
-    
   useEffect(() => {
-    getProductos()
-      .then((data) => {
-        setProductos (data.find((ItemDetail) => ItemDetail.id === idproducto));
-      })
-      .catch((err) => console.log(err));
-  }, []);
+      
+      
+          getFetch
+          .then(res => setProduct(res.find(prod => prod.id === idProducto)))
+          .catch(err => console.log(err))
+        
+   
+  }, [])
 
+  console.log(product)
+  
   return (
-
-  <>       
-    
-    <ItemDetail producto={producto} />
-
-    </> 
-    );
+      <>
+          <ItemDetail product={product} />
+      </>
+      );
 };
 
 export default ItemDetailContainer;
