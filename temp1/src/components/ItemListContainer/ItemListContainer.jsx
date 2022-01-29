@@ -1,7 +1,8 @@
-import  ItemCount  from '../ItemCount';
-import Button from 'react-bootstrap/esm/Button';
+import  ItemCount  from './ItemCount';
 import React, { useEffect, useState } from 'react';
-import { getFetch } from '../Helpers/mock';
+import {getProductos} from '../helpers/mock';
+import Button from 'react-bootstrap/esm/Button';
+import { Link, useParams } from 'react-router-dom';
 
 
 
@@ -10,13 +11,26 @@ function ItemListContainer () {
 
     const [productos, setProductos] = useState([]);
     const [bool,setBool] = useState(true)
+    const {idCategoria} = useParams()
 
     useEffect(() =>{
-    getFetch
-    .then(res => setProductos(res))
-    
 
-    },[])
+        if (idCategoria) {
+
+            getProductos
+        .then(res => setProductos(res.filter(prod=>prod.categoria===idCategoria)))
+        .catch(err=>console.log(err))
+       
+        } else {
+            
+        
+    getProductos
+    .then(res => setProductos(res))
+    .catch(err=>console.log(err))
+     
+        }
+
+    },[idCategoria])
 
     function onAdd (cant){
         console.log(cant)
@@ -25,33 +39,37 @@ function ItemListContainer () {
     
     return( 
     
-    <div>
+    <div className='menu'>
         {productos.map ( (prod) => <div
 
         key={prod.id} >
 
         
       <div className='cartItem'>
-     <div className="controls">
-           {`${prod.name}-${prod.categoria}`}
+     <div >
+           {`${prod.nombre}`}
         </div>
             <div className="card-body">
-                <img src={prod.foto} alt='' className="5px" /><br></br>
-                    {prod.price}
+                <img src={prod.foto} alt='' className="photos" /><br></br>
+                    {prod.precio}
       </div>
       <div className='cartItem-left'>
       <ItemCount stock={10} inicial={1} onAdd={onAdd} /> <br></br>
-           <Button bg="dark" variant="dark">Agregar al carrito</Button>
+
+      <div >
+          <Link to={`detalle/${prod.id}`}>
+           <Button className='detalle'>Detalle</Button>
+           </Link>
                 
+        </div> 
         </div>
-      </div> 
     </div>
 
 
-
+</div>
         )}
 
-        <button onClick={()=> setBool(!bool)}>click</button><br />
+      
         
     </div>
     )

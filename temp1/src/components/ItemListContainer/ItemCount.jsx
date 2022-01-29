@@ -24,10 +24,11 @@ function ItemCount ({inicial,stock,onAdd}) {
 
     return (
         < div className="container w-50">
-        <Button bg="dark" variant="dark" style= {{fontSize:'8px'}} onClick={handleRestar}>-</Button>
+        <Button bg="dark" variant="dark" style= {{fontSize:'7px'}} onClick={handleRestar}>-</Button>
         {contador}
-        <Button bg="dark" variant="dark" style= {{fontSize:'8px'}} onClick={handleAumentar}>+</Button><br></br>
-        
+        <Button bg="dark" variant="dark" style= {{fontSize:'7px'}} onClick={handleAumentar}>+</Button><br></br>
+        <br></br>
+        <Button className='botonCarrito' bg="dark" variant="dark" onClick={agregar}>Agregar al carrito</Button> 
         </div>
         
   
