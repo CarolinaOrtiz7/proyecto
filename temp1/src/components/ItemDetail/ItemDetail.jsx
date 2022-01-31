@@ -17,7 +17,7 @@ return <div>
           </div>
       </div>
       <div className="contador">
-          <ItemCount onAdd={onAdd} initial={1} stock={6}/> 
+          <ItemCount onAdd={onAdd} inicial={1} stock={6}/> 
           
       </div>
       </div>

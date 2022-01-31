@@ -7,11 +7,14 @@ import ItemDetailContainer from './components/ItemDetailConteiner/ItemDetailCont
 import Cart from './components/Cart/Cart';
 
 
+
 function App() {
 
   
   return (
+
     <BrowserRouter>
+   
     <div className="App" >
      <NavBar/>
 
@@ -25,6 +28,7 @@ function App() {
      </Routes>
 
     </div>
+   
     </BrowserRouter>
   );
 }

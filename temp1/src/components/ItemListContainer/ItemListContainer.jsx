@@ -1,6 +1,6 @@
 import  ItemCount  from './ItemCount';
 import React, { useEffect, useState } from 'react';
-import {getFetch} from '../helpers/mock';
+import {getFetch} from '../../helpers/mock';
 import Button from 'react-bootstrap/esm/Button';
 import { Link, useParams } from 'react-router-dom';
 

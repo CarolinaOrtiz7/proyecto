@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getFetch } from '../helpers/mock';
+import { getFetch } from '../../helpers/mock';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 const ItemDetailContainer = () => {
@@ -11,11 +11,13 @@ const ItemDetailContainer = () => {
       
       
           getFetch
+          .then(respuesta => console.log(respuesta))
           .then(res => setProduct(res.find(prod => prod.id === idProducto)))
           .catch(err => console.log(err))
-        
+          .finally(()=> setloading(false)) 
+
    
-  }, [])
+  }, [idProducto])
 
   console.log(product)
   
