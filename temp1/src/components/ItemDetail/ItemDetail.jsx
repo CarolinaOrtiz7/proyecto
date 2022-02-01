@@ -1,11 +1,23 @@
+
+
+import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemListContainer/ItemCount";
 
 
 const ItemDetail = ({product}) => {
 
-  function onAdd(cant) {
-      console.log(cant)
-  }
+
+    const { cartList, agregarAlCarrito } = useCartContext()
+
+    function onAdd(cant) {
+        agregarAlCarrito( {...product, cantidad: cant} )
+
+    }
+
+    console.log(cartList)
+
+
+  
 
 return <div>
       <div className="row">

@@ -14,7 +14,7 @@ const ItemDetailContainer = () => {
           .then(respuesta => console.log(respuesta))
           .then(res => setProduct(res.find(prod => prod.id === idProducto)))
           .catch(err => console.log(err))
-          .finally(()=> setloading(false)) 
+           
 
    
   }, [idProducto])
