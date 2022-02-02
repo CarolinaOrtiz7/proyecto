@@ -10,7 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 function ItemListContainer () {
 
     const [productos, setProductos] = useState([]);
-    const [bool,setBool] = useState(true)
+    const [loading, setloading] = useState(true)
     const {idCategoria} = useParams()
 
     useEffect(() =>{
@@ -20,14 +20,15 @@ function ItemListContainer () {
             getFetch
         .then(res => setProductos(res.filter(prod=>prod.categoria===idCategoria)))
         .catch(err=>console.log(err))
-       
+        .finally(()=> setloading(false))   
+
         } else {
             
         
     getFetch
     .then(res => setProductos(res))
     .catch(err=>console.log(err))
-     
+        .finally(()=> setloading(false))   
         }
 
     },[idCategoria])
@@ -36,11 +37,13 @@ function ItemListContainer () {
         console.log(cant)
     }
 
-    
+    console.log(idCategoria)
+
+
     return( 
     
     <div className='menu'>
-        {productos.map ( (prod) => <div
+        { loading ? <h2>Cargando ...</h2> :productos.map ( (prod) => <div
 
         key={prod.id} >
 
@@ -54,7 +57,7 @@ function ItemListContainer () {
                     {prod.precio}
       </div>
       <div className='cartItem-left'>
-      <ItemCount stock={10} inicial={1} onAdd={onAdd} /> <br></br>
+      <ItemCount stock={6} inicial={1} onAdd={onAdd} /> <br></br>
 
       <div >
           <Link to={`detalle/${prod.id}`}>

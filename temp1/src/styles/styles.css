@@ -74,4 +74,13 @@
   -webkit-box-shadow: 0.5px 0.5px 10px #a80707;
           box-shadow: 0.5px 0.5px 10px #a80707;
 }
+
+.VaciarCarrito {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  top: 250px;
+  left: 100px;
+}
 /*# sourceMappingURL=styles.css.map */

@@ -8,7 +8,7 @@ const Cart = () => {
     
   return <div>
       { cartList.map(product => <li>{product.nombre} precio: {product.precio} cantidad: {product.cantidad}</li> ) }
-        <Button onClick={vaciarCarrito} >Vaciar Carrito</Button>
+        <Button className="VaciarCarrito" onClick={vaciarCarrito} >Vaciar Carrito</Button>
   </div>;
 };
 
