@@ -6,12 +6,12 @@ import ItemCount from "../ItemListContainer/ItemCount";
 
 
 const ItemDetail = ({product}) => {
-
-const {contador,setContador} = useState (0);
+   
+    const [contador,setContador] = useState (0);
     const { cartList, agregarAlCarrito } = useCartContext()
 
     function onAdd(cant) {
-        setContador(cant)
+    setContador(cant)
         agregarAlCarrito( {...product, cantidad: cant} )
         
     }
@@ -19,7 +19,7 @@ const {contador,setContador} = useState (0);
     console.log(cartList)
 
 
-  
+    
 
 return <div>
       <div className="row">
@@ -36,14 +36,16 @@ contador === 0 ?
 
           <ItemCount onAdd={onAdd} inicial={1} stock={6}/> 
 :
-<>
+ <>
 <Link to='/cart'>
      <Button>Terminar compra</Button>
      </Link> 
-                            <Link to='/'>
-                                <Button>Seguir Comprando</Button>
-                            </Link>
+        <Link to='/'>
+    <Button>Seguir Comprando</Button>
+            </Link>
                         </>
+                        
+
 
 
 

@@ -54,10 +54,11 @@ function ItemListContainer () {
         </div>
             <div className="card-body">
                 <img src={prod.foto} alt='' className="photos" /><br></br>
-                    {prod.precio}
+                    {prod.precio} <br></br>
+                    <h8 className="descrip">{prod.descripcion}</h8><br></br> 
       </div>
       <div className='cartItem-left'>
-      <ItemCount stock={6} inicial={1} onAdd={onAdd} /> <br></br>
+    
 
       <div >
           <Link to={`detalle/${prod.id}`}>

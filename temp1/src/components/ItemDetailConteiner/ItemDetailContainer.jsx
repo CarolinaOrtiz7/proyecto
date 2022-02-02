@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getFetch } from '../../helpers/mock';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
+
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
   const { idProducto } = useParams()
@@ -22,7 +23,10 @@ const ItemDetailContainer = () => {
   console.log(product)
   
   return (
+
+    
       <>
+       
           <ItemDetail product={product} />
       </>
       );
