@@ -6,6 +6,7 @@ import ItemDetail from '../ItemDetail/ItemDetail';
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
+  const [loading,setLoading] = useState(true);
   const { idProducto } = useParams()
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const ItemDetailContainer = () => {
           
           .then(res => setProduct(res.find(prod => prod.id === idProducto)))
           .catch(err => console.log(err))
-           
+           .finally(()=> setLoading (false))
 
    
   }, [idProducto])
@@ -26,8 +27,16 @@ const ItemDetailContainer = () => {
 
     
       <>
-       
-          <ItemDetail product={product} />
+       {loading ?
+
+       <h2> Cargando...</h2>
+       :
+     
+       <ItemDetail product={product} />
+
+          
+
+       }
       </>
       );
 };
