@@ -55,9 +55,10 @@ function CartContextProvider({ children }) {
       cartList,
       agregarAlCarrito,
 	  Agregar,
+	  evitarDuplicados,
 	  eliminarUno,
 	  borraTodos,
-      vaciarCarrito
+      vaciarCarrito,
   }} >
         {children}
   </cartContext.Provider>;
