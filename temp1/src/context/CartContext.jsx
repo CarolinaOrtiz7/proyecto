@@ -11,17 +11,22 @@ function CartContextProvider({ children }) {
     function agregarAlCarrito(item){
         setCartList( [ ...cartList, item ] )
 
-        if(evitarDuplicados(item)) {
-			const cambiarCantidad = [...cartList]
-			cambiarCantidad.forEach(x => {
-				if(x.nombre === item ) {
-					x.cantidad += 1
-				}
-			})
-			return setCartList(cambiarCantidad)
-		}
-		return setCartList([...cartList, {nombre: item, cantidad: 1}])
+        
 	}
+
+	function Agregar (item) {
+	if(evitarDuplicados(item)) {
+		const cambiarCantidad = [...cartList]
+		cambiarCantidad.forEach(x => {
+			if(x.nombre === item ) {
+				x.cantidad += 1
+			}
+		})
+		return setCartList(cambiarCantidad)
+	}
+	return setCartList([...cartList, {nombre: item, cantidad: 1}])
+
+}
 
     const evitarDuplicados = (parametro) => {
 		const findCartList = cartList.find((i) => {
@@ -30,7 +35,17 @@ function CartContextProvider({ children }) {
 		return findCartList
 	}
 
-    function vaciarCarrito() {
+	const eliminarUno = (item) => {
+		const eliminarItem = [...item]
+		const itemEliminado = eliminarItem.filter(x => x.nombre !== item)
+		console.log('se ejecuta')
+		return setCartList(itemEliminado)
+	}
+
+	const borraTodos = () => setCartList([])
+	
+	
+ function vaciarCarrito() {
         setCartList([])
     }
 
@@ -39,6 +54,9 @@ function CartContextProvider({ children }) {
  return <cartContext.Provider value={{
       cartList,
       agregarAlCarrito,
+	  Agregar,
+	  eliminarUno,
+	  borraTodos,
       vaciarCarrito
   }} >
         {children}
