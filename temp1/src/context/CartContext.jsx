@@ -8,41 +8,36 @@ function CartContextProvider({ children }) {
     
     const [cartList, setCartList] = useState([]);
 
-    function agregarAlCarrito(item){
-        setCartList( [ ...cartList, item ] )
+    const agregarAlCarrito = (item) =>{
+        setCartList( [ ...cartList, item] )
 
+		if(evitarDuplicados(item)) {
+				const cambiarCantidad = [...cartList]
+				cambiarCantidad.forEach(x => {
+					if(x.nombre === item ) {
+						x.cantidad += 1
+					}
+				})
+				return setCartList(cambiarCantidad)
+			}
+			return setCartList([...cartList, {nombre: item, cantidad: 1}])
+		
+		
         
 	}
 
-	function Agregar (item) {
-	if(evitarDuplicados(item)) {
-		const cambiarCantidad = [...cartList]
-		cambiarCantidad.forEach(x => {
-			if(x.nombre === item ) {
-				x.cantidad += 1
-			}
-		})
-		return setCartList(cambiarCantidad)
-	}
-	return setCartList([...cartList, {nombre: item, cantidad: 1}])
-
-}
+	
 
     const evitarDuplicados = (parametro) => {
+		console.log(parametro);
 		const findCartList = cartList.find((i) => {
-			return i.nombre === parametro
+			return i.nombre === parametro.nombre
 		})
+		console.log ({findCartList});
 		return findCartList
 	}
 
-	const eliminarUno = (item) => {
-		const eliminarItem = [...item]
-		const itemEliminado = eliminarItem.filter(x => x.nombre !== item)
-		console.log('se ejecuta')
-		return setCartList(itemEliminado)
-	}
 
-	const borraTodos = () => setCartList([])
 	
 	
  function vaciarCarrito() {
@@ -51,17 +46,13 @@ function CartContextProvider({ children }) {
 
  
 
- return <cartContext.Provider value={{
+ return ( <cartContext.Provider value={{
       cartList,
       agregarAlCarrito,
-	  Agregar,
-	  evitarDuplicados,
-	  eliminarUno,
-	  borraTodos,
-      vaciarCarrito,
+	vaciarCarrito,
   }} >
         {children}
-  </cartContext.Provider>;
+  </cartContext.Provider>)
 }
 
 export default CartContextProvider;
