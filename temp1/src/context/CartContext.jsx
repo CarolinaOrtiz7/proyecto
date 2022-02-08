@@ -7,50 +7,44 @@ export const useCartContext = () => useContext(cartContext)
 function CartContextProvider({ children }) {
     
     const [cartList, setCartList] = useState([]);
+	console.log({cartList});
 
     const agregarAlCarrito = (item) =>{
-        setCartList( [ ...cartList, item] )
 
 		if(evitarDuplicados(item)) {
-				const cambiarCantidad = [...cartList]
+
+			const cambiarCantidad = [...cartList]
+				
 				cambiarCantidad.forEach(x => {
-					if(x.nombre === item ) {
-						x.cantidad += 1
+					if(x.nombre === item.nombre ) {
+						x.cantidad += item.cantidad
 					}
 				})
-				return setCartList(cambiarCantidad)
-			}
-			return setCartList([...cartList, {nombre: item, cantidad: 1}])
+				
+			return setCartList(cambiarCantidad)
 		
-		
-        
+		} else {
+			setCartList( [ ...cartList, item] )
+		}
 	}
 
-	
-
     const evitarDuplicados = (parametro) => {
-		console.log(parametro);
-		const findCartList = cartList.find((i) => {
+
+		const findCartList = cartList.some((i) => {
 			return i.nombre === parametro.nombre
 		})
-		console.log ({findCartList});
 		return findCartList
 	}
 
-
-	
-	
- function vaciarCarrito() {
+	function vaciarCarrito() {
         setCartList([])
     }
 
- 
-
- return ( <cartContext.Provider value={{
-      cartList,
-      agregarAlCarrito,
+return ( <cartContext.Provider value={{
+    cartList,
+    agregarAlCarrito,
 	vaciarCarrito,
-  }} >
+}}>
         {children}
   </cartContext.Provider>)
 }

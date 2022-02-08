@@ -37,7 +37,7 @@ function ItemListContainer () {
         console.log(cant)
     }
 
-    console.log(idCategoria)
+
 
 
     return( 
@@ -55,7 +55,7 @@ function ItemListContainer () {
             <div className="card-body">
                 <img src={prod.foto} alt='' className="photos" /><br></br>
                     {prod.precio} <br></br>
-                    <h8 className="descrip">{prod.descripcion}</h8><br></br> 
+                    <h4 className="descrip">{prod.descripcion}</h4><br></br> 
       </div>
       <div className='cartItem-left'>
     

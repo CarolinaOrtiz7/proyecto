@@ -27,7 +27,7 @@ return <div>
           <div className="container">
               <h3>{product.nombre}</h3> 
               <img src={product.foto} alt='' className='fotodetalle'/><br></br>
-              <h8 className="descripcion">{product.descripcion}</h8><br></br> 
+              <h3 className="descripcion">{product.descripcion}</h3><br></br> 
           </div>
       </div>
       <div className="contador">
