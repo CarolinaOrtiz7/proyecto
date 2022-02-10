@@ -19,7 +19,7 @@ function ItemListContainer () {
 
         const db = getFirestore()
 
-        const queryCollection = collection(db, 'Items')
+        const queryCollection = collection(db,'Items')
 
 
     
@@ -72,7 +72,7 @@ function ItemListContainer () {
         </div>
             <div className="card-body">
                 <img src={prod.foto} alt='' className="photos" /><br></br>
-                    {prod.precio} <br></br>
+                   $ {prod.precio} <br></br>
                     <h4 className="descrip">{prod.descripcion}</h4><br></br> 
       </div>
       <div className='cartItem-left'>

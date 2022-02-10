@@ -11,21 +11,34 @@ return <div>
 
 {cartList.length > 0 && ( 
           <div>
-            <h1>Productos en Carrito:</h1>
+            <h1 className='prodcart'>Productos en Carrito:</h1>
           </div> 
         )
 }
 
-      {cartList.map(product => 
-        <div>
-          <li className="cart2" >{product.nombre} Precio: {product.precio}       Cantidad: {product.cantidad}
-          </li> 
-          <button onClick={() => borrarItem(product.item.id)}>x</button>
-        </div>)}
+      {
+      cartList.map(product => 
+        <>
+        <div key={product.id}>
+<p>
+  <span>{product.nombre}</span> <br></br>
+  <span>Precio: ${product.precio}</span> <br></br>
+  Cantidad: {product.cantidad}
+</p>
+<Button className='borrarItem'  bg="dark" variant="dark" onClick={() => borrarItem(product.id)}>x</Button>
+</div>
 
-        {`la suma es ${sumaTotal()}`}
+</>
+
+ 
+
+)}
 
   
+{`El total es $ ${sumaTotal()}`}
+
+
+
 
 
 

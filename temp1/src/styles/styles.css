@@ -12,12 +12,6 @@
   font-size: 1em;
 }
 
-.navbar {
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-}
-
 .menu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -80,8 +74,8 @@
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  top: 150px;
-  left: 430px;
+  top: 100px;
+  left: 465px;
 }
 
 .cart2 {
@@ -97,5 +91,16 @@
 
 .descrip {
   font-size: 1em;
+}
+
+.borrarItem {
+  position: relative;
+  left: 150px;
+  bottom: 80px;
+  width: 2em;
+}
+
+.prodcart {
+  font-size: 2em;
 }
 /*# sourceMappingURL=styles.css.map */
