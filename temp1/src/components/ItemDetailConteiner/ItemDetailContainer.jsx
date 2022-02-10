@@ -1,3 +1,4 @@
+import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFetch } from '../../helpers/mock';
@@ -11,10 +12,11 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
       
-      
-          getFetch
-          
-          .then(res => setProduct(res.find(prod => prod.id === idProducto)))
+    const db = getFirestore()
+           const itemRef = doc(db, 'items',idProducto) 
+        getDoc(itemRef)
+         .then(resp => setProduct( { id: resp.id, ...resp.data() } ))
+
           .catch(err => console.log(err))
            .finally(()=> setLoading (false))
 

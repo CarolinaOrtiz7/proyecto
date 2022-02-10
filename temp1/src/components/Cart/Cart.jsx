@@ -4,27 +4,31 @@ import { useCartContext } from "../../context/CartContext";
 
 const Cart = () => {
 
-  const { cartList, vaciarCarrito } = useCartContext()
+  const { cartList, vaciarCarrito,borrarItem,sumaTotal } = useCartContext()
   console.log({cartList});
 
 return <div>
-         
-    
-    {cartList.length > 0 && ( 
-        <div>
-          <h1>Productos en Carrito:</h1>
-        </div> 
-      )
-    }
 
-    {cartList.map(product => (
-      <ul key={product.id} >
-        <li className="cart2" >{product.nombre} Precio: {product.precio}       Cantidad: {product.cantidad}
-        </li> 
-      </ul>)) 
-    }
-      
-   
+{cartList.length > 0 && ( 
+          <div>
+            <h1>Productos en Carrito:</h1>
+          </div> 
+        )
+}
+
+      {cartList.map(product => 
+        <div>
+          <li className="cart2" >{product.nombre} Precio: {product.precio}       Cantidad: {product.cantidad}
+          </li> 
+          <button onClick={() => borrarItem(product.item.id)}>x</button>
+        </div>)}
+
+        {`la suma es ${sumaTotal()}`}
+
+  
+
+
+
         <Button 
           className="VaciarCarrito" 
           onClick={vaciarCarrito}
@@ -32,7 +36,7 @@ return <div>
           Vaciar Carrito
         </Button>
 
-  </div>;
+        </div>;
 };
 
 export default Cart;

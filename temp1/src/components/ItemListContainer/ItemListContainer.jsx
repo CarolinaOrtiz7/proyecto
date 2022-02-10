@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import {collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, where} from 'firebase/firestore';
 import {getFetch} from '../../helpers/mock';
 import Button from 'react-bootstrap/esm/Button';
 import { Link, useParams } from 'react-router-dom';
@@ -10,26 +11,43 @@ import { Link, useParams } from 'react-router-dom';
 function ItemListContainer () {
 
     const [productos, setProductos] = useState([]);
+   
     const [loading, setloading] = useState(true)
     const {idCategoria} = useParams()
 
     useEffect(() =>{
 
-        if (idCategoria) {
+        const db = getFirestore()
 
-            getFetch
-        .then(res => setProductos(res.filter(prod=>prod.categoria===idCategoria)))
-        .catch(err=>console.log(err))
-        .finally(()=> setloading(false))   
+        const queryCollection = collection(db, 'Items')
 
-        } else {
+
+    
+      getDocs(queryCollection)
+        .then(resp => setProductos( resp.docs.map(prod => ( { id: prod.id, ...prod.data() } )  ) ))
+        .catch((err) => console.log(err))
+        .finally(() => setloading(false) )
+
+
+
+       // const itemref = doc(db,'Items','wM3gB96cU733QB2bBuB7')
+
+
+       // if (idCategoria) {
+
+       //     getFetch
+       // .then(res => setProductos(res.filter(prod=>prod.categoria===idCategoria)))
+      //  .catch(err=>console.log(err))
+      //  .finally(()=> setloading(false))   
+
+      //  } else {
             
         
-    getFetch
-    .then(res => setProductos(res))
-    .catch(err=>console.log(err))
-        .finally(()=> setloading(false))   
-        }
+    //getFetch
+     //.then(res => setProductos(res))
+    //.catch(err=>console.log(err))
+     //   .finally(()=> setloading(false))   
+     //   }
 
     },[idCategoria])
 
