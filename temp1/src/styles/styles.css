@@ -75,7 +75,7 @@
   display: flex;
   position: relative;
   top: 100px;
-  left: 465px;
+  left: 400px;
 }
 
 .cart2 {
@@ -102,5 +102,11 @@
 
 .prodcart {
   font-size: 2em;
+}
+
+.seguircomprando {
+  position: relative;
+  left: 100px;
+  top: 62px;
 }
 /*# sourceMappingURL=styles.css.map */

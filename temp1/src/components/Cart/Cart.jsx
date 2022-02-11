@@ -1,4 +1,5 @@
 import Button from "react-bootstrap/esm/Button";
+import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/CartContext";
 
 
@@ -9,16 +10,16 @@ const Cart = () => {
 
 return <div>
 
-{cartList.length > 0 && ( 
+{cartList.length !== 0 ?<> (
           <div>
             <h1 className='prodcart'>Productos en Carrito:</h1>
           </div> 
         )
-}
+
 
       {
       cartList.map(product => 
-        <>
+        
         <div key={product.id}>
 <p>
   <span>{product.nombre}</span> <br></br>
@@ -26,21 +27,21 @@ return <div>
   Cantidad: {product.cantidad}
 </p>
 <Button className='borrarItem'  bg="dark" variant="dark" onClick={() => borrarItem(product.id)}>x</Button>
-</div>
+</div> )}
+
+{`El total es $ ${sumaTotal()}`}
 
 </>
 
- 
+:
 
-)}
-
-  
-{`El total es $ ${sumaTotal()}`}
+<label>No hay productos en el carrito</label>
 
 
+      }
 
 
-
+<>
 
         <Button 
           className="VaciarCarrito" 
@@ -48,6 +49,12 @@ return <div>
         >
           Vaciar Carrito
         </Button>
+
+        <Link to='/'>
+    <Button className="seguircomprando">Seguir Comprando</Button>
+            </Link>
+
+      </>  
 
         </div>;
 };
