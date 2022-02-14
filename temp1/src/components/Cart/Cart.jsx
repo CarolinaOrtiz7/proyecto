@@ -10,11 +10,11 @@ const Cart = () => {
 
 return <div>
 
-{cartList.length !== 0 ?<> (
+{cartList.length !== 0 ?<> 
           <div>
             <h1 className='prodcart'>Productos en Carrito:</h1>
           </div> 
-        )
+        
 
 
       {

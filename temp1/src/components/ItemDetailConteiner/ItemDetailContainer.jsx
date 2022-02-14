@@ -1,7 +1,7 @@
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getFetch } from '../../helpers/mock';
+import Spinner from 'react-bootstrap/Spinner'
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 
@@ -31,7 +31,7 @@ const ItemDetailContainer = () => {
       <>
        {loading ?
 
-       <h2> Cargando...</h2>
+<Spinner animation="border" variant="primary" /> 
        :
      
        <ItemDetail product={product} />

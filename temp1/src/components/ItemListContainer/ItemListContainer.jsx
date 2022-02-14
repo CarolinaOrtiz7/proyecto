@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import {collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, where} from 'firebase/firestore';
-import {getFetch} from '../../helpers/mock';
+import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/esm/Button';
 import { Link, useParams } from 'react-router-dom';
 
@@ -71,7 +71,9 @@ function ItemListContainer () {
     return( 
     
     <div className='menu'>
-        { loading ? <h2>Cargando ...</h2> :productos.map ( (prod) => <div
+        { loading ? <Spinner animation="border" variant="primary" /> 
+        
+        :productos.map ( (prod) => <div
 
         key={prod.id} >
 
