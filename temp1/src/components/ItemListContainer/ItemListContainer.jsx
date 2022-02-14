@@ -17,17 +17,27 @@ function ItemListContainer () {
 
     useEffect(() =>{
 
-        const db = getFirestore()
-
-        const queryCollection = collection(db,'Items')
-
+          if (idCategoria) {    
+            const db = getFirestore()
+            const queryCollection = collection(db, 'Items')
+            const queryFiltro = query(queryCollection, 
+                where('categoria', '==', idCategoria)                
+            )
 
     
-      getDocs(queryCollection)
+      getDocs(queryFiltro)
         .then(resp => setProductos( resp.docs.map(prod => ( { id: prod.id, ...prod.data() } )  ) ))
         .catch((err) => console.log(err))
         .finally(() => setloading(false) )
 
+    } else {
+        const db = getFirestore()
+        const queryCollection = collection(db, 'Items')
+        getDocs(queryCollection)
+        .then(resp => setProductos( resp.docs.map(prod => ( { id: prod.id, ...prod.data() } )  ) ))
+        .catch((err) => console.log(err))
+        .finally(() => setloading(false))            
+    }
 
 
        // const itemref = doc(db,'Items','wM3gB96cU733QB2bBuB7')
