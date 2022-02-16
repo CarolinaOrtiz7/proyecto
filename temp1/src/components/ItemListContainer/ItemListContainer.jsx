@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import {collection, doc, getDoc, getDocs, getFirestore, limit, orderBy, query, where} from 'firebase/firestore';
+import {collection, getDocs, getFirestore,query, where} from 'firebase/firestore';
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/esm/Button';
 import { Link, useParams } from 'react-router-dom';
@@ -12,58 +12,34 @@ function ItemListContainer () {
 
     const [productos, setProductos] = useState([]);
    
-    const [loading, setloading] = useState(true)
+    const [cargando, setCargando] = useState(true)
     const {idCategoria} = useParams()
 
     useEffect(() =>{
 
-          if (idCategoria) {    
-            const db = getFirestore()
-            const queryCollection = collection(db, 'Items')
-            const queryFiltro = query(queryCollection, 
-                where('categoria', '==', idCategoria)                
-            )
-
-    
-      getDocs(queryFiltro)
-        .then(resp => setProductos( resp.docs.map(prod => ( { id: prod.id, ...prod.data() } )  ) ))
-        .catch((err) => console.log(err))
-        .finally(() => setloading(false) )
-
-    } else {
+           
         const db = getFirestore()
-        const queryCollection = collection(db, 'Items')
-        getDocs(queryCollection)
+        const queryCollection = collection(db, 'Items')        
+             
+        const queryFiltro = !idCategoria ? 
+            queryCollection                
+        : 
+            query(queryCollection, 
+                where('categoria', '==', idCategoria)                
+            )  
+
+        getDocs(queryFiltro)
         .then(resp => setProductos( resp.docs.map(prod => ( { id: prod.id, ...prod.data() } )  ) ))
         .catch((err) => console.log(err))
-        .finally(() => setloading(false))            
-    }
+        .finally(() => setCargando(false))            
+                   
 
 
-       // const itemref = doc(db,'Items','wM3gB96cU733QB2bBuB7')
 
-
-       // if (idCategoria) {
-
-       //     getFetch
-       // .then(res => setProductos(res.filter(prod=>prod.categoria===idCategoria)))
-      //  .catch(err=>console.log(err))
-      //  .finally(()=> setloading(false))   
-
-      //  } else {
-            
-        
-    //getFetch
-     //.then(res => setProductos(res))
-    //.catch(err=>console.log(err))
-     //   .finally(()=> setloading(false))   
-     //   }
 
     },[idCategoria])
 
-    function onAdd (cant){
-        console.log(cant)
-    }
+    
 
 
 
@@ -71,7 +47,7 @@ function ItemListContainer () {
     return( 
     
     <div className='menu'>
-        { loading ? <Spinner animation="border" variant="primary" /> 
+        { cargando ? <Spinner animation="border" variant="primary" /> 
         
         :productos.map ( (prod) => <div
 

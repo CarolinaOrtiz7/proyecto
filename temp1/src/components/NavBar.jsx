@@ -23,7 +23,6 @@ const NavBar = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           
-          <Nav.Link href="#link">Contacto</Nav.Link>
           <NavDropdown title="Menu" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
             <Link to='/categoria/Hamburguesas'>
