@@ -19,7 +19,7 @@ const Cart = () => {
   const [dataForm, setDataForm] = useState({
       email: '',
       tel: '',
-      nombre: '',
+      name: '',
   })
 
 const { cartList, vaciarCarrito,borrarItem,sumaTotal } = useCartContext()
@@ -73,7 +73,7 @@ const realizarCompra = async (e) => {
           setDataForm({
               email: '',
               tel: '',
-              nombre: '',
+              name: '',
           })
           vaciarCarrito()
       })    
@@ -84,7 +84,7 @@ batch.commit()
 const handleChange = (event) => {      
   setDataForm({ 
       ...dataForm,
-      [event.target.nombre]: event.target.valor
+      [event.target.name]: event.target.value
   })
 }
 
@@ -123,7 +123,7 @@ return <div>
           :
             <> 
                 <label>No hay productos en el carrito</label> <br></br>
-                <Button onClick={vaciarCarrito} >Vaciar Carrito</Button> <br></br>
+                <Button bg="dark" variant="dark" onClick={vaciarCarrito} >Vaciar Carrito</Button> <br></br>
             </> 
         
       }
@@ -134,37 +134,37 @@ return <div>
 onSubmit={realizarCompra}                           
 >
 <input 
-    tipo='texto' 
-    nombre='nombre' 
-    placeholder='nombre' 
+    type='texto' 
+    name='name' 
+    placeholder='name' 
     onChange={handleChange}
-    valor={dataForm.nombre}
+    value={dataForm.name}
 />
 <br />
 <input 
-    tipo='numero' 
+    type='numero' 
     name='tel'
     placeholder='tel' 
     onChange={handleChange}
-    valor={dataForm.tel}
+    value={dataForm.tel}
 />
 <br/>
 <input 
-    tipo='email' 
-    nombre='email'
+    type='email' 
+    name='email'
     placeholder='email' 
     onChange={handleChange}
-    valor={dataForm.email}
+    value={dataForm.email}
 /> <br></br>
 <input 
-    tipo='email' 
-    nombre='validarEmail'
+    type='email' 
+    name='validarEmail'
     placeholder='Repetir Email' 
     onChange={handleChange}
    
 />
 <br/>
-<Button>Generar Orden</Button>
+<Button bg="dark" variant="dark">Generar Orden</Button>
 </form>
 
 
