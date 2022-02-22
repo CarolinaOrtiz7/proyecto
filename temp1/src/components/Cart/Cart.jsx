@@ -2,14 +2,15 @@ import Button from "react-bootstrap/esm/Button";
 
 import { useCartContext } from "../../context/CartContext";
 
-import{getFirestore, 
+import{ 
   collection, 
-  addDoc, 
   query, 
   where, 
   documentId, 
   writeBatch, 
-  getDocs, 
+  getDocs,
+  getFirestore,
+  addDoc, 
 } from 'firebase/firestore';
 import { useState } from "react";
 
@@ -25,19 +26,19 @@ const Cart = () => {
 const { cartList, vaciarCarrito,borrarItem,sumaTotal } = useCartContext()
  
         
-
 const realizarCompra = async (e) => {
   e.preventDefault()  
 
-  let orden = {}  
+   
+  let orden = {}          
 
   orden.buyer =  dataForm 
   orden.total = sumaTotal();
 
   orden.items = cartList.map(cartItem => {
-      const id = cartItem.id;
-      const nombre = cartItem.item.nombre;
-      const precio = cartItem.item.precio * cartItem.cantidad;
+      const id = cartItem.item.id;
+      const nombre = cartItem.item.name;
+      const precio = cartItem.item.price * cartItem.cantidad;
       const cantidad = cartItem.cantidad
       
       return {
@@ -46,15 +47,20 @@ const realizarCompra = async (e) => {
           precio, 
           cantidad
       }   
-  }) 
+
+  })
+  
+
   
   const db = getFirestore()
   const ordersCollection = collection (db, 'orders')
-  await addDoc ( ordersCollection, orden)
+  await addDoc( ordersCollection, orden)
   .then(resp => setId(resp.id))
 
+
+
   const queryCollection = collection(db, 'Items')
-        
+  
 
   const queryActulizarStock = query(
       queryCollection, 
@@ -65,21 +71,23 @@ const realizarCompra = async (e) => {
 
   await getDocs(queryActulizarStock)
   .then(resp => resp.docs.forEach(res => batch.update(res.ref, {
-          stock: res.data().stock - cartList.find(item => item.id === res.id).cantidad
+          stock: res.data().stock - cartList.find(item => item.item.id === res.id).cantidad
       })
   ))
   .catch(err => console.log(err))
   .finally(() => { 
           setDataForm({
               email: '',
-              tel: '',
-              name: '',
+              phone: '',
+              name: ''
           })
           vaciarCarrito()
       })    
 batch.commit()  
 
 }
+
+
 
 const handleChange = (event) => {      
   setDataForm({ 
@@ -94,6 +102,7 @@ console.log(dataForm);
 
 return <div>
  {id !== '' && `El id de la orden es : ${id} ` }
+ 
             <br />
 
 {cartList.length !== 0 ?<> 
@@ -119,20 +128,15 @@ return <div>
 
 
 
-</>
-          :
-            <> 
-                <label>No hay productos en el carrito</label> <br></br>
-                <Button bg="dark" variant="dark" onClick={vaciarCarrito} >Vaciar Carrito</Button> <br></br>
-            </> 
-        
-      }
+<br></br>
+
+<Button bg="dark" variant="dark" onClick={vaciarCarrito} >Vaciar Carrito</Button> <br></br>
+
+
 
       <br/>
 
-      <form 
-onSubmit={realizarCompra}                           
->
+      <form onSubmit={realizarCompra}>
 <input 
     type='texto' 
     name='name' 
@@ -164,10 +168,17 @@ onSubmit={realizarCompra}
    
 />
 <br/>
-<Button bg="dark" variant="dark">Generar Orden</Button>
+<Button bg="dark" variant="dark" >Generar Orden</Button>
 </form>
 
-
+</>
+          :
+            <> 
+                <label>No hay productos en el carrito</label> <br></br>
+                
+            </> 
+        
+      }
 
      
         </div>;
