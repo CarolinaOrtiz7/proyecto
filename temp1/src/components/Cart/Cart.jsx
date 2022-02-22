@@ -1,5 +1,5 @@
 import Button from "react-bootstrap/esm/Button";
-
+import { Link } from 'react-router-dom';
 import { useCartContext } from "../../context/CartContext";
 
 import{ 
@@ -82,7 +82,7 @@ const realizarCompra = async (e) => {
               phone: '',
               name: ''
           })
-          vaciarCarrito()
+          
       })    
 batch.commit()  
 
@@ -176,7 +176,9 @@ return <div>
           :
             <> 
                 <label>No hay productos en el carrito</label> <br></br>
-                
+                <Link to='/'>
+    <Button> Comprar </Button>
+            </Link>
             </> 
         
       }
