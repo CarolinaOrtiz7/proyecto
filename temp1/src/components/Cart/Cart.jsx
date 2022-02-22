@@ -3,14 +3,15 @@ import Button from "react-bootstrap/esm/Button";
 import { useCartContext } from "../../context/CartContext";
 
 import{ 
-  collection, 
+ 
   query, 
   where, 
   documentId, 
   writeBatch, 
   getDocs,
   getFirestore,
-  addDoc, 
+  addDoc,
+  collection, 
 } from 'firebase/firestore';
 import { useState } from "react";
 
@@ -36,9 +37,9 @@ const realizarCompra = async (e) => {
   orden.total = sumaTotal();
 
   orden.items = cartList.map(cartItem => {
-      const id = cartItem.item.id;
-      const nombre = cartItem.item.name;
-      const precio = cartItem.item.price * cartItem.cantidad;
+      const id = cartItem.id;
+      const nombre = cartItem.nombre;
+      const precio = cartItem.precio * cartItem.cantidad;
       const cantidad = cartItem.cantidad
       
       return {
@@ -53,7 +54,7 @@ const realizarCompra = async (e) => {
 
   
   const db = getFirestore()
-  const ordersCollection = collection (db, 'orders')
+  const ordersCollection = collection (db,'orders')
   await addDoc( ordersCollection, orden)
   .then(resp => setId(resp.id))
 
@@ -64,7 +65,7 @@ const realizarCompra = async (e) => {
 
   const queryActulizarStock = query(
       queryCollection, 
-      where( documentId() , 'in', cartList.map(it => it.item.id) )          
+      where( documentId() , 'in', cartList.map(it => it.id) )          
   ) 
 
   const batch = writeBatch(db)
@@ -85,7 +86,7 @@ const realizarCompra = async (e) => {
       })    
 batch.commit()  
 
-}
+    }
 
 
 
@@ -118,7 +119,7 @@ return <div>
         <div key={product.id}>
 <p>
   <span>{product.nombre}</span> <br></br>
-  <span>Precio: ${product.precio}</span> <br></br>
+  <span>Precio: {product.precio}</span> <br></br>
   Cantidad: {product.cantidad}
 </p>
 <Button className='borrarItem'  bg="dark" variant="dark" onClick={() => borrarItem(product.id)}>x</Button>
@@ -168,7 +169,7 @@ return <div>
    
 />
 <br/>
-<Button bg="dark" variant="dark" >Generar Orden</Button>
+<button bg="dark" variant="dark" >Generar Orden</button>
 </form>
 
 </>
