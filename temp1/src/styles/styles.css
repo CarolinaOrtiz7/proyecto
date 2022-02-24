@@ -32,20 +32,42 @@
   margin-top: 90px;
   margin-left: 1em;
   border: none;
-  -webkit-box-shadow: 0.5px 0.5px 10px #c9c9c9;
-          box-shadow: 0.5px 0.5px 10px #c9c9c9;
+  -webkit-box-shadow: 0.5px 0.5px 10px #202020;
+          box-shadow: 0.5px 0.5px 10px #202020;
 }
 
 .detalle {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
   text-decoration: none;
-  font-size: 0.7rem;
-  padding: 0.3rem;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .botonCarrito {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
   text-decoration: none;
-  font-size: 0.7rem;
-  padding: 0.3rem;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .fotodetalle {
@@ -95,9 +117,19 @@
 
 .borrarItem {
   position: relative;
-  left: 150px;
-  bottom: 80px;
+  left: 140px;
+  bottom: 90px;
   width: 2em;
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
 }
 
 .prodcart {
@@ -108,5 +140,73 @@
   position: relative;
   left: 100px;
   top: 62px;
+}
+
+.orden {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.comprar {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.terminar {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.seguir {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3f413f;
+  border: none;
+  border-radius: 15px;
+  -webkit-box-shadow: 0 9px #999;
+          box-shadow: 0 9px #999;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 /*# sourceMappingURL=styles.css.map */

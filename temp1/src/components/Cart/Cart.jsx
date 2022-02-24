@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/esm/Button";
 import { Link } from 'react-router-dom';
 import { useCartContext } from "../../context/CartContext";
-
+import validacion from "./validacion";
 import{ 
  
   query, 
@@ -80,24 +80,29 @@ const realizarCompra = async (e) => {
           setDataForm({
               email: '',
               phone: '',
-              name: ''
-          })
+             name: ''
+        })
           
       })    
 batch.commit()  
 
     }
 
+const [errors,setErrors] = useState ({});
 
-
-const handleChange = (event) => {      
+const handleChange = (event) => {  
+  setErrors(validacion(dataForm));    
   setDataForm({ 
       ...dataForm,
       [event.target.name]: event.target.value
   })
 }
 
-console.log(dataForm);
+console.log(dataForm); 
+
+
+
+
 
 
 
@@ -137,31 +142,35 @@ return <div>
 
       <br/>
 
-      <form onSubmit={realizarCompra}>
-<input 
+      <form className='formulario' onSubmit={realizarCompra}>
+<input  className="mb-3"
     type='texto' 
     name='name' 
-    placeholder='name' 
+    placeholder='Ingresa tu nombre' 
     onChange={handleChange}
     value={dataForm.name}
-/>
-<br />
-<input 
+/> <br />
+{errors.name && <p className="error">{errors.name}</p>}
+
+<input  className="mb-3" 
     type='numero' 
     name='tel'
     placeholder='tel' 
     onChange={handleChange}
     value={dataForm.tel}
 />
+{errors.tel && <p className="error">{errors.tel}</p>}
 <br/>
-<input 
+<input   className="mb-3"
     type='email' 
     name='email'
-    placeholder='email' 
+    placeholder='Ingresa tu email' 
     onChange={handleChange}
     value={dataForm.email}
-/> <br></br>
-<input 
+/> 
+{errors.email && <p className="error">{errors.email}</p>}
+<br></br>
+<input  className="mb-3" 
     type='email' 
     name='validarEmail'
     placeholder='Repetir Email' 
@@ -169,7 +178,7 @@ return <div>
    
 />
 <br/>
-<button bg="dark" variant="dark" >Generar Orden</button>
+<button className="orden" >Generar Orden</button>
 </form>
 
 </>
@@ -177,7 +186,7 @@ return <div>
             <> 
                 <label>No hay productos en el carrito</label> <br></br>
                 <Link to='/'>
-    <Button> Comprar </Button>
+    <button className="comprar">  Comprar </button>
             </Link>
             </> 
         

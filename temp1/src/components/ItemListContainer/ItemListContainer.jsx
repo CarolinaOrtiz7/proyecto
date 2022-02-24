@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import {collection, getDocs, getFirestore,query, where} from 'firebase/firestore';
 import Spinner from 'react-bootstrap/Spinner'
-import Button from 'react-bootstrap/esm/Button';
+
 import { Link, useParams } from 'react-router-dom';
 
 
@@ -61,14 +61,14 @@ function ItemListContainer () {
             <div className="card-body">
                 <img src={prod.foto} alt='' className="photos" /><br></br>
                    $ {prod.precio} <br></br>
-                    <h4 className="descrip">{prod.descripcion}</h4><br></br> 
+                    
       </div>
       <div className='cartItem-left'>
     
 
       <div >
           <Link to={`detalle/${prod.id}`}>
-           <Button className='detalle'>Detalle</Button>
+           <button className='detalle'>Detalle</button>
            </Link>
                 
         </div> 

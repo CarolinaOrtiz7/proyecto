@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Button from "react-bootstrap/esm/Button";
+
 import { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemListContainer/ItemCount";
@@ -38,10 +38,10 @@ contador === 0 ?
 :
  <>
 <Link to='/cart'>
-     <Button>Terminar compra</Button>
+     <button className="terminar">Terminar compra</button>
      </Link> 
         <Link to='/'>
-    <Button>Seguir Comprando</Button>
+    <button className="seguir">Seguir Comprando</button>
             </Link>
                         </>
                         
